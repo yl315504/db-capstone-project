@@ -1,4 +1,11 @@
 USE little_lemon_db;
+
+CREATE PROCEDURE GetMaxQuantity()
+SELECT Max(Quantity) AS "Max Quantity in Order"
+FROM Orders;
+
+CALL GetMaxQuantity();
+
 DELIMITER //
 CREATE PROCEDURE CheckBooking(booking_date DATE, input_table_number INT)
 BEGIN 
