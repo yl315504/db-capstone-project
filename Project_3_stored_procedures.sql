@@ -28,7 +28,8 @@ CALL CheckBooking("2022-10-10", 3);
 
 DROP PROCEDURE IF EXISTS AddValidBooking;
 DELIMITER //
-CREATE PROCEDURE AddValidBooking(booking_date DATE, input_table_number INT, customer_ID INT, staff_ID INT, booking_slot DATETIME)
+CREATE PROCEDURE AddValidBooking(booking_date DATE, input_table_number INT, customer_ID INT, 
+                                 staff_ID INT, booking_slot DATETIME)
 BEGIN
 	DECLARE isBooked INT DEFAULT 0;
     START TRANSACTION; 
@@ -37,7 +38,8 @@ BEGIN
     
     SELECT COUNT(*) INTO isBooked
     FROM Bookings
-    WHERE BookingDate = booking_date AND TableNumber = input_table_number AND BookingCustomerID = customer_ID AND BookingID != LAST_INSERT_ID();
+    WHERE BookingDate = booking_date AND TableNumber = input_table_number AND 
+          BookingCustomerID = customer_ID AND BookingID != LAST_INSERT_ID();
     IF isBooked > 0 THEN
 		ROLLBACK;
         SELECT"This table is already booked - booking cancelled" AS Message;
