@@ -50,12 +50,7 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL AddValidBooking("2022-11-12", 3, 3, 6, "2022-11-12 20:00:00");
-CALL AddValidBooking("2022-12-12", 3, 3, 6, "2022-11-12 20:00:00");
-CALL AddValidBooking("2022-12-13", 3, 3, 6, "2022-11-12 20:00:00");
-
-SELECT *
-FROM Bookings;
+CALL AddValidBooking("2022-11-12", 3, 809275246, 3, "2022-11-12 20:00:00");
 
 DROP PROCEDURE IF EXISTS UpdateBooking;
 DELIMITER //
@@ -69,8 +64,6 @@ END //
 DELIMITER ;
 
 CALL UpdateBooking(3, "2022-12-14");
-SELECT *
-FROM Bookings;
 
 DELIMITER //
 CREATE PROCEDURE CancelBooking(booking_id INT)
@@ -82,7 +75,7 @@ END //
 
 DELIMITER ;
 
-CALL CancelBooking(11);
 CALL CancelBooking(7);
+
 SELECT *
 FROM Bookings;
